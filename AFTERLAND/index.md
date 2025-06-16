@@ -1,6 +1,6 @@
 ---
-title: Welcome to Quartz
+title: Добро пожаловать на просторы вселенной Послеземье!
+publish: true
 ---
 
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
+**Послеземье** — мир волшебства и чудес… *Будет дополнено…*
