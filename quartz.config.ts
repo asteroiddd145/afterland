@@ -8,23 +8,29 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "Quartz 4",
+    pageTitle: "ARCANA OF AFTERLAND",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
-    analytics: {
-      provider: "plausible",
+    analytics: { 
+      provider: 'google', 
+      tagId: 'G-JGYHSFTX7Q'
     },
-    locale: "en-US",
-    baseUrl: "quartz.jzhao.xyz",
-    ignorePatterns: ["private", "templates", ".obsidian"],
+    locale: "ru-RU",
+    baseUrl: "afterland.ru",
+    ignorePatterns: [
+      "private", 
+      "templates", 
+      ".obsidian"
+    ],
     defaultDateType: "modified",
     theme: {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        header: "Schibsted Grotesk",
-        body: "Source Sans Pro",
+        title: "Vollkorn",
+        header: "Inter", //"Schibsted Grotesk",
+        body: "Inter", //"Source Sans Pro",
         code: "IBM Plex Mono",
       },
       colors: {
@@ -32,11 +38,11 @@ const config: QuartzConfig = {
           light: "#faf8f8",
           lightgray: "#e5e5e5",
           gray: "#b8b8b8",
-          darkgray: "#4e4e4e",
-          dark: "#2b2b2b",
-          secondary: "#284b63",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
+          darkgray: "#323232",
+          dark: "#323232", //"#2b2b2b",
+          secondary: "#f09670", //"#284b63",
+          tertiary: "#cb744e", //"#84a59d",
+          highlight: "#8f9fa926",
           textHighlight: "#fff23688",
         },
         darkMode: {
@@ -45,9 +51,9 @@ const config: QuartzConfig = {
           gray: "#646464",
           darkgray: "#d4d4d4",
           dark: "#ebebec",
-          secondary: "#7b97aa",
-          tertiary: "#84a59d",
-          highlight: "rgba(143, 159, 169, 0.15)",
+          secondary: "#f09670", //"#7b97aa",
+          tertiary: "#cb744e", //"#84a59d",
+          highlight: "#8f9fa926",
           textHighlight: "#b3aa0288",
         },
       },
@@ -73,7 +79,10 @@ const config: QuartzConfig = {
       Plugin.Description(),
       Plugin.Latex({ renderEngine: "katex" }),
     ],
-    filters: [Plugin.RemoveDrafts()],
+    filters: [
+      Plugin.RemoveDrafts(),
+      Plugin.ExplicitPublish()
+    ],
     emitters: [
       Plugin.AliasRedirects(),
       Plugin.ComponentResources(),
