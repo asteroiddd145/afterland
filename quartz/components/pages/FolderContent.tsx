@@ -36,12 +36,15 @@
         return null
       }
 
+      console.log(folder)
+
       const allPagesInFolder: QuartzPluginData[] =
         folder.children
           .map((node) => {
             if (node.isFolder && options.showSubfolders) {
-              const orderFile = node.children.find(child => child.slugSegment === "order")
-              const folderOrder = orderFile?.data?.frontmatter?.order
+              const orderFile = node.children.find(child => child.slugSegment === "index");
+              const folderOrder = orderFile?.data?.frontmatter?.order;
+
               const getMostRecentDates = (): QuartzPluginData["dates"] => {
                 let maybeDates: QuartzPluginData["dates"] | undefined = undefined
                 for (const child of node.children) {
@@ -82,7 +85,7 @@
               }
             }
 
-            if (node.data && node.slugSegment !== "order") {
+            if (node.data && node.slugSegment !== "index") {
               return {
                 ...node.data,
                 isFolder: false,
