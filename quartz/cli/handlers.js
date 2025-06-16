@@ -172,12 +172,9 @@ export async function handleCreate(argv) {
     await fs.promises.writeFile(
       path.join(contentFolder, "index.md"),
       `---
-title: Welcome to Quartz
----
-
-This is a blank Quartz installation.
-See the [documentation](https://quartz.jzhao.xyz) for how to get started.
-`,
+      title: Добро пожалось на просторы вселенной Arcana of Afterland
+      ---
+      `,
     )
   }
 

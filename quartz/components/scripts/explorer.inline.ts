@@ -1,5 +1,5 @@
 import { FileTrieNode } from "../../util/fileTrie"
-import { FullSlug, resolveRelative, simplifySlug } from "../../util/path"
+import { FilePath, FullSlug, resolveRelative, simplifySlug } from "../../util/path"
 import { ContentDetails } from "../../plugins/emitters/contentIndex"
 
 type MaybeHTMLElement = HTMLElement | undefined
@@ -175,6 +175,32 @@ async function setupExplorer(currentSlug: FullSlug) {
     const data = await fetchData
     const entries = [...Object.entries(data)] as [FullSlug, ContentDetails][]
     const trie = FileTrieNode.fromEntries(entries)
+
+    // Apply order for folders
+    function applyFolderOrder(node: FileTrieNode) {
+      if (!node.isFolder) return
+      const idx = node.children.findIndex(child => child.slugSegment === "order")
+      if (idx !== -1) {
+        const orderNode = node.children[idx]
+        const ord = Number(orderNode.data?.order)
+        if (!isNaN(ord)) {
+          if (!node.data) {
+            node.data = {
+              slug: "unknown" as FullSlug,
+              filePath: "unknown" as FilePath,
+              title: node.slugSegment,
+              links: [],
+              tags: [],
+              content: "",
+            }
+          }
+          node.data.order = ord
+        }
+        node.children.splice(idx, 1)
+      }
+      node.children.forEach(applyFolderOrder)
+    }
+    applyFolderOrder(trie)
 
     // Apply functions in order
     for (const fn of opts.order) {

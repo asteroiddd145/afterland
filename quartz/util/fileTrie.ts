@@ -5,6 +5,7 @@ interface FileTrieData {
   slug: string
   title: string
   filePath: string
+  order?: number
 }
 
 export class FileTrieNode<T extends FileTrieData = ContentDetails> {
@@ -134,9 +135,28 @@ export class FileTrieNode<T extends FileTrieData = ContentDetails> {
   /**
    * Sort trie nodes according to sort/compare function
    */
-  sort(sortFn: (a: FileTrieNode<T>, b: FileTrieNode<T>) => number) {
+  /*sort(sortFn: (a: FileTrieNode<T>, b: FileTrieNode<T>) => number) {
     this.children = this.children.sort(sortFn)
     this.children.forEach((e) => e.sort(sortFn))
+  }*/
+
+  sort(sortFn?: (a: FileTrieNode<T>, b: FileTrieNode<T>) => number) {
+    // Если сортировка не передана — сортируем по order, а потом по title
+    const comparator = sortFn || ((a, b) => {
+      const aOrder = a.data?.order ?? Infinity
+      const bOrder = b.data?.order ?? Infinity
+
+      if (aOrder !== bOrder) return aOrder - bOrder
+
+      const aTitle = a.data?.title ?? a.slugSegment
+      const bTitle = b.data?.title ?? b.slugSegment
+
+      return aTitle.localeCompare(bTitle)
+    })
+
+    this.children.sort(comparator)
+
+    this.children.forEach(child => child.sort(sortFn))
   }
 
   static fromEntries<T extends FileTrieData>(entries: [FullSlug, T][]) {

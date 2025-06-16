@@ -252,7 +252,6 @@ export function renderPage(
                 </div>
               </div>
               <Content {...componentData} />
-              <hr />
               <div class="page-footer">
                 {afterBody.map((BodyComponent) => (
                   <BodyComponent {...componentData} />
@@ -260,10 +259,10 @@ export function renderPage(
               </div>
             </div>
             {RightComponent}
-            <Footer {...componentData} />
           </Body>
         </div>
       </body>
+
       {pageResources.js
         .filter((resource) => resource.loadTime === "afterDOMReady")
         .map((res) => JSResourceToScriptElement(res))}

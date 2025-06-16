@@ -75,7 +75,7 @@ export default {
     folderContent: {
       folder: "Папка",
       itemsUnderFolder: ({ count }) =>
-        `в этой папке ${count} элемент${getForm(count, "", "а", "ов")}`,
+        `В этой папке ${count} элемент${getForm(count, "", "а", "ов")}:`,
     },
     tagContent: {
       tag: "Тег",
