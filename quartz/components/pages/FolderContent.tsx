@@ -36,8 +36,6 @@
         return null
       }
 
-      console.log(folder)
-
       const allPagesInFolder: QuartzPluginData[] =
         folder.children
           .map((node) => {

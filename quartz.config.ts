@@ -8,7 +8,7 @@ import * as Plugin from "./quartz/plugins"
  */
 const config: QuartzConfig = {
   configuration: {
-    pageTitle: "ARCANA OF AFTERLAND",
+    pageTitle: "ПОСЛЕЗЕМЬЕ",
     pageTitleSuffix: "",
     enableSPA: true,
     enablePopovers: true,
@@ -28,8 +28,8 @@ const config: QuartzConfig = {
       fontOrigin: "googleFonts",
       cdnCaching: true,
       typography: {
-        title: "Vollkorn",
-        header: "Inter", //"Schibsted Grotesk",
+        title: "Inter",
+        header: "Inter", //"Inter", //"Schibsted Grotesk",
         body: "Inter", //"Source Sans Pro",
         code: "IBM Plex Mono",
       },
