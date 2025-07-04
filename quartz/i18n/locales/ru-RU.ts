@@ -58,7 +58,7 @@ export default {
       title: "Оглавление",
     },
     contentMeta: {
-      readingTime: ({ minutes }) => `время чтения ~${minutes} мин.`,
+      readingTime: ({ minutes }) => `время чтения ~${minutes} мин`,
     },
   },
   pages: {

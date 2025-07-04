@@ -38,6 +38,15 @@ body {
 
         .page-header {
             margin: 0;
+
+            .article-title {
+                font-size: 2rem;
+                text-transform: uppercase;
+            }
         }
+    }
+
+    .content-meta {
+        font-style: italic;
     }
 }

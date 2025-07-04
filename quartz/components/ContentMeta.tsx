@@ -16,7 +16,7 @@ interface ContentMetaOptions {
 }
 
 const defaultOptions: ContentMetaOptions = {
-  showReadingTime: false,
+  showReadingTime: true,
   showComma: false,
   showDate: false
 }
@@ -39,8 +39,8 @@ export default ((opts?: Partial<ContentMetaOptions>) => {
       }
 
       // Display reading time if enabled
-      if (options.showReadingTime) {
-        const { minutes, words: _words } = readingTime(text)
+      if (options.showReadingTime && fileData.frontmatter?.time) {
+        const { minutes } = readingTime(text)
         const displayedTime = i18n(cfg.locale).components.contentMeta.readingTime({
           minutes: Math.ceil(minutes),
         })

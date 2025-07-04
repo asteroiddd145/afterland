@@ -7,8 +7,8 @@ import { FontSpecification, getFontSpecificationName, ThemeKey } from "./theme"
 import path from "path"
 import { QUARTZ } from "./path"
 // import { formatDate, getDate } from "../components/Date"
-// import readingTime from "reading-time"
-// import { i18n } from "../i18n"
+import readingTime from "reading-time"
+import { i18n } from "../i18n"
 import { styleText } from "util"
 
 const defaultHeaderWeight = [700]
@@ -176,7 +176,7 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
   userOpts,
   title,
   description,
-  //fileData,
+  fileData,
   iconBase64,
 }) => {
   const { colorScheme } = userOpts
@@ -188,10 +188,10 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
   // const date = rawDate ? formatDate(rawDate, cfg.locale) : null
 
   // Calculate reading time
-  // const { minutes } = readingTime(fileData.text ?? "")
-  // const readingTimeText = i18n(cfg.locale).components.contentMeta.readingTime({
-  //   minutes: Math.ceil(minutes),
-  // })
+  const { minutes } = readingTime(fileData.text ?? "")
+  const readingTimeText = i18n(cfg.locale).components.contentMeta.readingTime({
+    minutes: Math.ceil(minutes),
+  })
 
   // Get tags if available
   //const tags = fileData.frontmatter?.tags ?? []
@@ -290,6 +290,29 @@ export const defaultImage: SocialImageOptions["imageStructure"] = ({
         >
           {description}
         </p>
+      </div>
+
+      {/* Left side - Date and Reading Time */}
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          color: cfg.theme.colors[colorScheme].gray,
+          fontSize: 28,
+        }}
+      >
+        <svg
+          style={{ marginRight: "0.5rem" }}
+          width="28"
+          height="28"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+        >
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 6 12 12 16 14"></polyline>
+        </svg>
+        {readingTimeText}
       </div>
     </div>
   )
