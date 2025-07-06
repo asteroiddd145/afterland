@@ -1,5 +1,5 @@
 ---
 order: 6
 publish: true
-title: Предметы
+title: Вещи
 ---
